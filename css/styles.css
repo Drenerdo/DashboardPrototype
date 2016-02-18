@@ -2,7 +2,9 @@ body {
 	background-color: black;
 	color: white;
 }
-
+.row {
+	margin: 0px;
+}
 .main-time {
 	font-size: 60px;
 }
