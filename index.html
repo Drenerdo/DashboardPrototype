@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Dashboard</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="libs/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="libs/weather-icons-master/css/weather-icons.min.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+
+	<body ng-controller="MainCtrl">
+		<div class="container-lg black">
+			<div class="row">
+				<div class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4 text-center">
+					<h1 class="main-time">{{data.current.timeval}}</h1>
+					<h4>{{data.current.weekday|uppercase}}</h4>
+					<h3>{{data.current.dateval|uppercase}}</h3>
+				</div>
+				<div class="col-sm-3 col-md-4 text-right text-xs-center">
+					<h1>
+						<i class="wi wi-day-cloudy"></i>
+						<!-- <img ng-src="{{data.current.weather_icon}}"/> -->
+						{{data.current.temp_max}} °F
+					</h1>
+					<h1>{{data.current.temp_min}} °F</h1>
+					<h4>{{data.current.weather_description}}</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-5 col-md-4">
+					<h4>TOP NEWS STORIES</h4><hr/>
+					<div ng-repeat="n in data.news">{{n.title}}<hr/></div>
+				</div>
+				<div class="col-sm-5 col-md-4 col-sm-offset-2 col-md-offset-4 text-right">
+					<h4>7-DAY WEATHER FORECAST</h4><hr/>
+					<div class="row" ng-repeat="r in [0,1]">
+						<div class="col-xs-4 col-sm-4 col-md-4 text-center" ng-repeat="c in [0,1,2]">
+							<i class="wi wi-night-thunderstorm" style="font-size:30px;"></i>
+							<div>{{data.whethers[$index + $parent.$index * 3].week}}</div>
+							<div>{{data.whethers[$index + $parent.$index * 3].temperature1}}</div>
+							<div>{{data.whethers[$index + $parent.$index * 3].temperature2}}</div>
+							<div>{{data.whethers[$index + $parent.$index * 3].content}}</div>
+						</div>
+					</div>
+					
+					<h4>CURRENT TRAFFIC</h4><hr/>
+					<div id="map"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="libs/angular/angular.min.js"></script>
+	<script src="libs/angular/angular-route.min.js"></script>
+	<script src="libs/jquery-2.1.4.min.js"></script>
+	<script src="libs/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+	<script src="libs/functions.js"></script>
+	<script src="app/app.js"></script>
+	<script src="controllers/MainCtrl.js"></script>
+</html>
+
